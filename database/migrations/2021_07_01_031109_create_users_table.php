@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('phone', 16)->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
-            $table->foreign('organization_id')->references('id')->on('users_organizations')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('users_locations')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('users_organizations');
+            $table->foreign('location_id')->references('id')->on('users_locations');
         });
     }
 
