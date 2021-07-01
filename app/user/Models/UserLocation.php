@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string     $name
  */
-class Organization extends Model
+class UserLocation extends Model
 {
     use HasFactory;
     /**

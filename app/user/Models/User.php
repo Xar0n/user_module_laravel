@@ -55,7 +55,7 @@ class User extends Authenticatable
     /**
      * Атрибуты, которые следует приводить к собственным типам.
      *
-     * @var string[]
+     * @var array
      */
     protected $casts = [
 

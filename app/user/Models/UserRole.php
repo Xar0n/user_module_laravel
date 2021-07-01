@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string     $name
  */
-class Role extends Model
+class UserRole extends Model
 {
     use HasFactory;
     /**
