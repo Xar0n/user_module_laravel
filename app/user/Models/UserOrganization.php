@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * class UserOrganization
+ *
+ * @package App\User\Models
  * @property string     $name
  */
 class UserOrganization extends Model

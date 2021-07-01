@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
+ * Class User
+ *
+ * @package App\User\Models
  * @property boolean    $gender
  * @property string     $login
  * @property string     $password
