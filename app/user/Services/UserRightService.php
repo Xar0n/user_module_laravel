@@ -20,8 +20,8 @@ class UserRightService
     }
 
     /**
-     * @param $id
-     * @param $name
+     * @param int $id
+     * @param string $name
      */
     public function edit($id, $name)
     {
