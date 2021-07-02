@@ -6,10 +6,28 @@ use App\User\Models\UserRight;
 use App\User\Services\UserRightService;
 use Illuminate\Http\Request;
 
+/**
+ * Class UserRightController
+ *
+ * @package App\User\Controllers
+ *
+ *
+ */
 class UserRightController extends Controller
 {
+    private UserRightService $userRightService;
+
     /**
-     * Display a listing of the resource.
+     * UserRightController constructor.
+     */
+    public function __construct()
+    {
+       parent::__construct();
+       $this->userRightService = app(UserRightService::class);
+    }
+
+    /**
+     * Вывести список ресурса.
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,46 +37,46 @@ class UserRightController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Сохранить вновь созданный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->userRightService->store($request->post('name'));
     }
 
     /**
-     * Display the specified resource.
+     * Отобразить указанный ресурс.
      *
-     * @param  \App\User\Models\UserRight  $userRight
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserRight $userRight)
+    public function show($id)
     {
-        //
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить указанный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User\Services\UserRightService  $userRight
+     * @@param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserRightService $userRightService)
+    public function update(Request $request, $id)
     {
-        $userRightService->edit();
+        $this->userRightService->edit($id, $request->input('name'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалите указанный ресурс из хранилища.
      *
      * @param  \App\User\Models\UserRight  $userRight
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserRight $userRight)
+    public function destroy()
     {
         //
     }

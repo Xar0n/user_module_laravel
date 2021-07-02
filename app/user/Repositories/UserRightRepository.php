@@ -35,4 +35,16 @@ class UserRightRepository extends CoreRepository
     {
         return $this->startConditions()->find($id);
     }
+
+    /**
+     * Создать модель
+     *
+     * @param string $name
+     */
+    public function store($name)
+    {
+        $model = $this->startConditions();
+        $model->name = $name;
+        $model->save();
+    }
 }

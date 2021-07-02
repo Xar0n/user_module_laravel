@@ -6,6 +6,12 @@ namespace App\User\Services;
 
 use App\User\Repositories\UserRightRepository;
 
+/**
+ * Class UserRightService
+ *
+ * @package App\User\Services
+ *
+ */
 class UserRightService
 {
 
@@ -20,6 +26,8 @@ class UserRightService
     }
 
     /**
+     * Редактирование модели
+     *
      * @param int $id
      * @param string $name
      */
@@ -31,5 +39,15 @@ class UserRightService
         }
         $right->name = $name;
         $right->save();
+    }
+
+    /**
+     * Создание модели
+     *
+     * @param string $name
+     */
+    public function store($name)
+    {
+        $this->userRightRepository->store($name);
     }
 }
