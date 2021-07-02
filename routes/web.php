@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],function () {
+    Route::resource('/', 'UserController')->except([]);
+    Route::resource('roles', 'UserRoleController')->except([]);
+    Route::resource('rights', 'UserRightController')->except([]);
+});
