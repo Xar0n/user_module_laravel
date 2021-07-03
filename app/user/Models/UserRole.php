@@ -29,4 +29,14 @@ class UserRole extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Права, принадлежащие роли.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(UserRight::class, 'users_rights_roles', 'role_id', 'right_id');
+    }
 }

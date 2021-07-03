@@ -63,4 +63,34 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+
+    /**
+     * Организация, принадлежащая пользователю.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function organization()
+    {
+        return $this->belongsTo(UserOrganization::class, 'organization_id');
+    }
+
+    /**
+     * Локация, принадлежащая пользователю.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo(UserLocation::class, 'location_id');
+    }
+
+    /**
+     * Роли, принадлежащие пользователю.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(UserRole::class, 'users_users_roles', 'user_id', 'role_id');
+    }
 }

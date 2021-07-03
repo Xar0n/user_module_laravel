@@ -29,4 +29,14 @@ class UserGroup extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Роли, принадлежащие группе.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(UserRole::class, 'users_groups_roles', 'group_id', 'role_id');
+    }
 }
