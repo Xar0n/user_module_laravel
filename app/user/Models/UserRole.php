@@ -15,6 +15,13 @@ class UserRole extends Model
 {
     use HasFactory;
     /**
+     * Таблица базы данных, используемая моделью.
+     *
+     * @var string
+     */
+    protected $table = 'users_roles';
+
+    /**
      * Указывает, должна ли модель иметь временную метку.
      *
      * @var boolean

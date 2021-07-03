@@ -15,6 +15,13 @@ class UserOrganization extends Model
 {
     use HasFactory;
     /**
+     * Таблица базы данных, используемая моделью.
+     *
+     * @var string
+     */
+    protected $table = 'users_organizations';
+
+    /**
      * Указывает, должна ли модель иметь временную метку.
      *
      * @var boolean

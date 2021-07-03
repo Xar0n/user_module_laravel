@@ -24,6 +24,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     /**
+     * Таблица базы данных, используемая моделью.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
      * Указывает, должна ли модель иметь временную метку.
      *
      * @var boolean
@@ -89,7 +96,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles()
+    public function userRole()
     {
         return $this->belongsToMany(UserRole::class, 'users_users_roles', 'user_id', 'role_id');
     }
