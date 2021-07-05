@@ -2,7 +2,6 @@
 
 namespace App\User\Controllers;
 
-use App\User\Models\UserRole;
 use App\User\Services\UserRoleService;
 use Illuminate\Http\Request;
 
@@ -30,7 +29,6 @@ class UserRoleController extends Controller
      * Сохранить вновь созданный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,10 +40,20 @@ class UserRoleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->userRoleService->update($request, $id);
+    }
+
+    /**
+     * Добавить право к роли.
+     *
+     * @param int $idRole
+     * @param int $idRight
+     */
+    public function addRight($idRole, $idRight)
+    {
+        $this->userRoleService->addRight($idRole, $idRight);
     }
 }

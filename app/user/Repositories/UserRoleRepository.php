@@ -4,6 +4,7 @@
 namespace App\User\Repositories;
 
 
+use App\User\Models\User;
 use App\User\Models\UserRole;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -25,7 +26,7 @@ class UserRoleRepository extends CoreRepository
     }
 
     /**
-     * Получить модель для редактирования
+     * Получить модель для редактирования.
      *
      * @param int $id
      *
@@ -39,7 +40,7 @@ class UserRoleRepository extends CoreRepository
     }
 
     /**
-     * Получить права роли
+     * Получить права роли.
      *
      * @param int $id
      *
@@ -50,6 +51,17 @@ class UserRoleRepository extends CoreRepository
     public function getRights($id)
     {
 
+    }
+
+    /**
+     * Добавить право к роли
+     *
+     * @param UserRole $model
+     * @param int $idRight
+     */
+    public function addRight(UserRole $model, int $idRight)
+    {
+        $model->userRight()->attach($idRight);
     }
 
     /**
@@ -65,7 +77,7 @@ class UserRoleRepository extends CoreRepository
     }
 
     /**
-     * Редактировать модель
+     * Редактировать модель.
      *
      * @param UserRole $model
      * @param string $name

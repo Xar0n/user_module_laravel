@@ -54,4 +54,22 @@ class UserRoleService
     {
         $this->userRoleRepository->store($request->input('name'));
     }
+
+    /**
+     * Добавить право к роли.
+     *
+     * @param int $idRole
+     * @param int $idRight
+     *
+     * @throws HttpException
+     * @throws NotFoundHttpException
+     */
+    public function addRight(int $idRole, int $idRight)
+    {
+        $role = $this->userRoleRepository->getEdit($idRole);
+        if (empty($role)) {
+            abort(404);
+        }
+        $this->userRoleRepository->addRight($role, $idRight);
+    }
 }

@@ -21,5 +21,8 @@ Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],funct
     $except = ['create', 'show', 'destroy', 'edit', 'index'];
     Route::resource('/', 'UserController')->except($except);
     Route::resource('roles', 'UserRoleController')->except($except);
+    Route::group(['prefix' => '/roles'], function () {
+        Route::patch('/{idRole}/params/{idRight}', 'UserRoleController@addRight');
+    });
     Route::resource('rights', 'UserRightController')->except($except);
 });
