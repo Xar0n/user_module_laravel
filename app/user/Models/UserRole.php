@@ -42,7 +42,7 @@ class UserRole extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles()
+    public function userRight()
     {
         return $this->belongsToMany(UserRight::class, 'users_rights_roles', 'role_id', 'right_id');
     }

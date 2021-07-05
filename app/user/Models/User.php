@@ -100,4 +100,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(UserRole::class, 'users_users_roles', 'user_id', 'role_id');
     }
+
+    /**
+     * Группы, принадлежащие пользователю.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function userGroup()
+    {
+        return $this->belongsToMany(UserGroup::class, 'users_users_groups', 'user_id', 'group_id');
+    }
 }

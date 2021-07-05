@@ -42,7 +42,7 @@ class UserGroup extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles()
+    public function userRole()
     {
         return $this->belongsToMany(UserRole::class, 'users_groups_roles', 'group_id', 'role_id');
     }
