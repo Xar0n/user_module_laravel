@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 
+use App\User\Models\UserRight;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,7 +14,8 @@ class UserRightTest extends TestCase
 
     public function test_update()
     {
-        $response = $this->put('/users/rights/1', ['name' => $this->faker->unique()->sentence()]);
+        $right = UserRight::factory()->create();
+        $response = $this->put('/users/rights/'.$right->id, ['name' => $this->faker->unique()->sentence()]);
         $response->assertStatus(200);
     }
 

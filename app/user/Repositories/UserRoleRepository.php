@@ -34,7 +34,7 @@ class UserRoleRepository extends CoreRepository
      *
      * @throws ModelNotFoundException
      */
-    public function getEdit($id)
+    public function getEdit(int $id):UserRole
     {
         return $this->startConditions()->find($id);
     }
@@ -48,7 +48,7 @@ class UserRoleRepository extends CoreRepository
      *
      * @throws ModelNotFoundException
      */
-    public function getRights($id)
+    public function getRights(int $id)
     {
 
     }
@@ -69,7 +69,7 @@ class UserRoleRepository extends CoreRepository
      *
      * @param string $name
      */
-    public function store($name)
+    public function store(string $name)
     {
         $model = $this->startConditions();
         $model->name = $name;

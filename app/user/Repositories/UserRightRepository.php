@@ -35,7 +35,7 @@ class UserRightRepository extends CoreRepository
      *
      * @throws ModelNotFoundException
      */
-    public function getEdit($id)
+    public function getEdit(int $id):UserRight
     {
         return $this->startConditions()->find($id);
     }

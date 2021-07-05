@@ -20,7 +20,7 @@ class UserRoleService
     private UserRoleRepository $userRoleRepository;
 
     /**
-     * UserRightService constructor.
+     * UserRoleService constructor.
      */
     public function __construct()
     {

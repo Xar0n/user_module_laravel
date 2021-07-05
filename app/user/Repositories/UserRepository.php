@@ -3,8 +3,63 @@
 
 namespace App\User\Repositories;
 
+use App\User\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class UserRepository
+/**
+ * Class UserRepository
+ *
+ * @package App\User\Repositories
+ *
+ *
+ */
+class UserRepository extends CoreRepository
 {
+    /**
+     * @return string
+     */
+    protected function getModelClass()
+    {
+        return User::class;
+    }
 
+    /**
+     * Получить модель для редактирования
+     *
+     * @param int $id
+     *
+     * @return User
+     *
+     * @throws ModelNotFoundException
+     */
+    public function getEdit(int $id):User
+    {
+        return $this->startConditions()->find($id);
+    }
+
+    /**
+     * Создать модель
+     * @param  boolean    $gender
+     * @param string     $login
+     * @param string     $password
+     * @param string     $fio
+     * @param string     $email
+     * @param string     $phone
+     * @param int     $organization_id
+     * @param int     $location_id
+     */
+    public function store(bool $gender, string $login, string $password,
+                          string $fio, string $email, string $phone, int $organization_id, int $location_id)
+    {
+        $model = $this->startConditions();
+        $model->gender = $gender;
+        $model->login = $login;
+        $model->password = $password;
+        $model->fio = $fio;
+        $model->email = $email;
+        $model->phone = $phone;
+        $model->organization_id = $organization_id;
+        $model->location_id = $location_id;
+        $model->save();
+    }
 }
