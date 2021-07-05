@@ -44,7 +44,7 @@ class UserRightController extends Controller
      */
     public function store(Request $request)
     {
-        $this->userRightService->store($request->post('name'));
+        $this->userRightService->store($request);
     }
 
     /**
@@ -67,7 +67,7 @@ class UserRightController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->userRightService->edit($id, $request->input('name'));
+        $this->userRightService->edit($id, $request);
     }
 
     /**

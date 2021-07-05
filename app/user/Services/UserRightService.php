@@ -5,6 +5,9 @@ namespace App\User\Services;
 
 
 use App\User\Repositories\UserRightRepository;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class UserRightService
@@ -29,25 +32,28 @@ class UserRightService
      * Редактирование модели
      *
      * @param int $id
-     * @param string $name
+     * @param Request $request
+     *
+     * @throws HttpException
+     * @throws NotFoundHttpException
      */
-    public function edit($id, $name)
+    public function edit(int $id, Request $request)
     {
         $right = $this->userRightRepository->getEdit($id);
-        if (empty($rigt)) {
+        if (empty($right)) {
             abort(404);
         }
-        $right->name = $name;
+        $right->name = $request->input('name');
         $right->save();
     }
 
     /**
      * Создание модели
      *
-     * @param string $name
+     * @param Request $request
      */
-    public function store($name)
+    public function store(Request $request)
     {
-        $this->userRightRepository->store($name);
+        $this->userRightRepository->store($request->input('name'));
     }
 }

@@ -5,6 +5,7 @@ namespace App\User\Repositories;
 
 
 use App\User\Models\UserRight;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class UserRightRepository
@@ -30,6 +31,8 @@ class UserRightRepository extends CoreRepository
      * @param int $id
      *
      * @return UserRight
+     *
+     * @throws ModelNotFoundException
      */
     public function getEdit($id)
     {
