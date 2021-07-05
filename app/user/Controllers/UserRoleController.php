@@ -3,12 +3,31 @@
 namespace App\User\Controllers;
 
 use App\User\Models\UserRole;
+use App\User\Services\UserRoleService;
 use Illuminate\Http\Request;
 
+/**
+ * Class UserRoleController
+ *
+ * @package App\User\Controllers
+ *
+ *
+ */
 class UserRoleController extends Controller
 {
+    private UserRoleService $userRoleService;
+
     /**
-     * Display a listing of the resource.
+     * UserRightController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRoleService = app(UserRoleService::class);
+    }
+
+    /**
+     * Вывести список ресурса.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,7 +37,7 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Показать форму для создания нового ресурса.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,18 +47,18 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Сохранить вновь созданный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->userRoleService->store($request);
     }
 
     /**
-     * Display the specified resource.
+     * Отобразить указанный ресурс.
      *
      * @param  \App\User\Models\UserRole  $userRole
      * @return \Illuminate\Http\Response
@@ -50,7 +69,7 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Показать форму редактирования указанного ресурса.
      *
      * @param  \App\User\Models\UserRole  $userRole
      * @return \Illuminate\Http\Response
@@ -61,19 +80,19 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить указанный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User\Models\UserRole  $userRole
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserRole $userRole)
+    public function update(Request $request, $id)
     {
-        //
+        $this->userRoleService->update($request, $id);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить указанный ресурс из хранилища.
      *
      * @param  \App\User\Models\UserRole  $userRole
      * @return \Illuminate\Http\Response

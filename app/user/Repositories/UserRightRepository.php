@@ -6,6 +6,7 @@ namespace App\User\Repositories;
 
 use App\User\Models\UserRight;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\UnauthorizedException;
 
 /**
  * Class UserRightRepository
@@ -44,9 +45,21 @@ class UserRightRepository extends CoreRepository
      *
      * @param string $name
      */
-    public function store($name)
+    public function store(string $name)
     {
         $model = $this->startConditions();
+        $model->name = $name;
+        $model->save();
+    }
+
+    /**
+     * Редактировать модель
+     *
+     * @param UserRight $model
+     * @param string $name
+     */
+    public function update(UserRight $model, string $name)
+    {
         $model->name = $name;
         $model->save();
     }

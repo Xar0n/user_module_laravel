@@ -2,7 +2,6 @@
 
 namespace App\User\Controllers;
 
-use App\User\Models\UserRight;
 use App\User\Services\UserRightService;
 use Illuminate\Http\Request;
 
@@ -67,7 +66,7 @@ class UserRightController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->userRightService->edit($id, $request);
+        $this->userRightService->update($request, $id);
     }
 
     /**

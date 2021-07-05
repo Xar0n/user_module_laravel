@@ -4,28 +4,27 @@
 namespace App\User\Services;
 
 
-use App\User\Repositories\UserRightRepository;
+use App\User\Repositories\UserRoleRepository;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class UserRightService
+ * Class UserRoleService
  *
  * @package App\User\Services
  *
  */
-class UserRightService
+class UserRoleService
 {
-
-    private UserRightRepository $userRightRepository;
+    private UserRoleRepository $userRoleRepository;
 
     /**
      * UserRightService constructor.
      */
     public function __construct()
     {
-        $this->userRightRepository = app(UserRightRepository::class);
+        $this->userRoleRepository = app(UserRoleRepository::class);
     }
 
     /**
@@ -39,11 +38,11 @@ class UserRightService
      */
     public function update(Request $request, int $id)
     {
-        $right = $this->userRightRepository->getEdit($id);
-        if (empty($right)) {
+        $role = $this->userRoleRepository->getEdit($id);
+        if (empty($role)) {
             abort(404);
         }
-        $this->userRightRepository->update($right, $request->input('name'));
+        $this->userRoleRepository->update($role, $request->input('name'));
     }
 
     /**
@@ -53,6 +52,6 @@ class UserRightService
      */
     public function store(Request $request)
     {
-        $this->userRightRepository->store($request->input('name'));
+        $this->userRoleRepository->store($request->input('name'));
     }
 }
