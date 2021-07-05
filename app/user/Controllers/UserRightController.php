@@ -26,16 +26,6 @@ class UserRightController extends Controller
     }
 
     /**
-     * Вывести список ресурса.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,17 +34,6 @@ class UserRightController extends Controller
     public function store(Request $request)
     {
         $this->userRightService->store($request);
-    }
-
-    /**
-     * Отобразить указанный ресурс.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
     }
 
     /**
@@ -67,16 +46,5 @@ class UserRightController extends Controller
     public function update(Request $request, $id)
     {
         $this->userRightService->update($request, $id);
-    }
-
-    /**
-     * Удалите указанный ресурс из хранилища.
-     *
-     * @param  \App\User\Models\UserRight  $userRight
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
-    {
-        //
     }
 }

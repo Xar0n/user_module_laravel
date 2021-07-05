@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],function () {
-    Route::resource('/', 'UserController')->except([]);
-    Route::resource('roles', 'UserRoleController')->except([]);
-    Route::resource('rights', 'UserRightController')->except([]);
+    $except = ['create', 'show', 'destroy', 'edit', 'index'];
+    Route::resource('/', 'UserController')->except($except);
+    Route::resource('roles', 'UserRoleController')->except($except);
+    Route::resource('rights', 'UserRightController')->except($except);
 });

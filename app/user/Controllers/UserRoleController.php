@@ -27,26 +27,6 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Вывести список ресурса.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Показать форму для создания нового ресурса.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -55,28 +35,6 @@ class UserRoleController extends Controller
     public function store(Request $request)
     {
         $this->userRoleService->store($request);
-    }
-
-    /**
-     * Отобразить указанный ресурс.
-     *
-     * @param  \App\User\Models\UserRole  $userRole
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserRole $userRole)
-    {
-        //
-    }
-
-    /**
-     * Показать форму редактирования указанного ресурса.
-     *
-     * @param  \App\User\Models\UserRole  $userRole
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserRole $userRole)
-    {
-        //
     }
 
     /**
@@ -89,16 +47,5 @@ class UserRoleController extends Controller
     public function update(Request $request, $id)
     {
         $this->userRoleService->update($request, $id);
-    }
-
-    /**
-     * Удалить указанный ресурс из хранилища.
-     *
-     * @param  \App\User\Models\UserRole  $userRole
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UserRole $userRole)
-    {
-        //
     }
 }
