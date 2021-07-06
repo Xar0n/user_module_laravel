@@ -39,17 +39,18 @@ class UserRepository extends CoreRepository
 
     /**
      * Создать модель
-     * @param  boolean    $gender
-     * @param string     $login
-     * @param string     $password
-     * @param string     $fio
-     * @param string     $email
-     * @param string     $phone
-     * @param int     $organization_id
-     * @param int     $location_id
+     * @param boolean $gender
+     * @param string $login
+     * @param string $password
+     * @param string $fio
+     * @param string|null $email
+     * @param string|null $phone
+     * @param int|null $organization_id
+     * @param int|null $location_id
      */
     public function store(bool $gender, string $login, string $password,
-                          string $fio, string $email, string $phone, int $organization_id, int $location_id)
+                          string $fio, string $email = null, string $phone = null,
+                          int $organization_id = null, int $location_id = null)
     {
         $model = $this->startConditions();
         $model->gender = $gender;

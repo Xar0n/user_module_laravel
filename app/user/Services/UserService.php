@@ -31,14 +31,24 @@ class UserService
      */
     public function store(Request $request)
     {
-        $gender = (bool) $request->input('gender');
-        $login = $request->input('login');
-        $password = md5(md5($request->input('password')));
-        $fio = $request->input('fio');
-        $email = $request->input('email');
-        $phone = $request->input('phone');
-        $organization_id = (int) $request->input('organization_id');
-        $location_id = (int) $request->input('location_id');
+        $gender = (bool) $request->input('user.gender');
+        $login = $request->input('user.login');
+        $password = md5(md5($request->input('user.password')));
+        $fio = $request->input('user.fio');
+        $email = !empty($request->input('user.email')) ? $request->input('user.email') : null;
+        $phone = !empty($request->input('user.phone')) ? $request->input('user.phone') : null;
+        $organization_id = !empty($request->input('user.organization_id')) ? (int) $request->input('user.organization_id') : null;
+        $location_id = !empty($request->input('user.location_id')) ? (int) $request->input('user.location_id') : null;
         $this->userRepository->store($gender, $login, $password, $fio, $email, $phone, $organization_id, $location_id);
+    }
+
+    /**
+     * Добавить роль пользователю
+     *
+     * @param Request $request
+     */
+    public function addRoles(Request $request)
+    {
+
     }
 }
