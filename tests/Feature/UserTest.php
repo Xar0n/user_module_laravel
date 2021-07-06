@@ -29,4 +29,19 @@ class UserTest extends TestCase
         ]);
         $response->assertStatus(200);
     }
+
+    public function test_store2()
+    {
+        $response = $this->post('/users', [
+            'gender' => mt_rand(0, 1),
+            'login' => $this->faker->unique()->userName(),
+            'password' => md5(md5('test')),
+            'fio' => $this->faker->unique()->name(),
+            'email' => '',
+            'phone' => '',
+            'organization_id' => '',
+            'location_id' => '',
+        ]);
+        $response->assertStatus(200);
+    }
 }

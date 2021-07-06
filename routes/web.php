@@ -25,4 +25,5 @@ Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],funct
         Route::patch('/{idRole}/params/{idRight}', 'UserRoleController@addRight');
     });
     Route::resource('rights', 'UserRightController')->except($except);
+    Route::resource('groups', 'UserGroupController')->except($except);
 });
