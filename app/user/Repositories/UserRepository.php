@@ -39,6 +39,7 @@ class UserRepository extends CoreRepository
 
     /**
      * Создать модель
+     *
      * @param boolean $gender
      * @param string $login
      * @param string $password
@@ -47,10 +48,12 @@ class UserRepository extends CoreRepository
      * @param string|null $phone
      * @param int|null $organization_id
      * @param int|null $location_id
+     *
+     * @return User
      */
     public function store(bool $gender, string $login, string $password,
                           string $fio, string $email = null, string $phone = null,
-                          int $organization_id = null, int $location_id = null)
+                          int $organization_id = null, int $location_id = null):User
     {
         $model = $this->startConditions();
         $model->gender = $gender;
@@ -62,5 +65,17 @@ class UserRepository extends CoreRepository
         $model->organization_id = $organization_id;
         $model->location_id = $location_id;
         $model->save();
+        return $model;
+    }
+
+    /**
+     * Добавить роль к пользователю
+     *
+     * @param User $model
+     * @param int $idRole
+     */
+    public function addRole(User $model, int $idRole)
+    {
+        $model->userRole()->attach($idRole);
     }
 }

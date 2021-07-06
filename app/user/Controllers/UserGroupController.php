@@ -35,4 +35,15 @@ class UserGroupController extends Controller
     {
         $this->userGroupService->store($request);
     }
+
+    /**
+     * Добавить роль к группе.
+     *
+     * @param int $idRole
+     * @param int $idGroup
+     */
+    public function addRole($idRole, $idGroup)
+    {
+        $this->userGroupService->addRole($idGroup, $idRole);
+    }
 }

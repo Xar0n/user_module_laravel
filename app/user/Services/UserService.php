@@ -3,6 +3,7 @@
 
 namespace App\User\Services;
 
+use App\User\Models\User;
 use App\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -39,16 +40,10 @@ class UserService
         $phone = !empty($request->input('user.phone')) ? $request->input('user.phone') : null;
         $organization_id = !empty($request->input('user.organization_id')) ? (int) $request->input('user.organization_id') : null;
         $location_id = !empty($request->input('user.location_id')) ? (int) $request->input('user.location_id') : null;
-        $this->userRepository->store($gender, $login, $password, $fio, $email, $phone, $organization_id, $location_id);
-    }
-
-    /**
-     * Добавить роль пользователю
-     *
-     * @param Request $request
-     */
-    public function addRoles(Request $request)
-    {
-
+        $model = $this->userRepository->store($gender, $login, $password, $fio, $email, $phone, $organization_id, $location_id);
+        $roles = (array) $request->input('roles');
+        foreach ($roles as $role) {
+            $this->userRepository->addRole($model, $role);
+        }
     }
 }

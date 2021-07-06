@@ -26,4 +26,7 @@ Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],funct
     });
     Route::resource('rights', 'UserRightController')->except($except);
     Route::resource('groups', 'UserGroupController')->except($except);
+    Route::group(['prefix' => '/roles'], function () {
+        Route::post('/{idRole}/groups/{idGroup}', 'UserGroupController@addRole');
+    });
 });
