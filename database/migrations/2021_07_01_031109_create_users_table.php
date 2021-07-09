@@ -21,10 +21,24 @@ class CreateUsersTable extends Migration
             $table->string('fio', 50);
             $table->string('email', 50)->unique()->nullable();
             $table->string('phone', 16)->nullable();
+            $table->string('my_snab_sign', 255)->nullable();
+            $table->string('avatar', 50)->nullable();
+            $table->boolean('status');
+            $table->boolean('fired');
+            $table->integer('truck')->nullable();
+            $table->boolean('not_sign_mode')->nullable();
+            $table->unsignedBigInteger('become_user')->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('post_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('base_id')->nullable();
+            $table->foreign('become_user')->references('id')->on('users');
             $table->foreign('organization_id')->references('id')->on('users_organizations');
+            $table->foreign('division_id')->references('id')->on('users_divisions');
+            $table->foreign('post_id')->references('id')->on('users_posts');
             $table->foreign('location_id')->references('id')->on('users_locations');
+            $table->foreign('base_id')->references('id')->on('users_bases');
         });
     }
 
