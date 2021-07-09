@@ -2,10 +2,6 @@
 
 namespace App\User\Models;
 
-use App\Models\UserBase;
-use App\Models\UserDivision;
-use App\Models\UserPost;
-use App\Models\UserStorage;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
