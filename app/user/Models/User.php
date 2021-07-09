@@ -89,6 +89,7 @@ class User extends Authenticatable
 
     ];
 
+
     /**
      * Организация, принадлежащая пользователю.
      *
@@ -196,7 +197,7 @@ class User extends Authenticatable
      */
     public function userHierarchie()
     {
-        return $this->belongsToMany(User::class, 'users_users_hierarchies', 'user_id', 'users_id');
+        return $this->belongsToMany(User::class, 'users_users_hierarchies', 'user_id', 'hierarchy_id');
     }
 
     /**
