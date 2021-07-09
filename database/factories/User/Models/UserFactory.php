@@ -3,8 +3,11 @@
 namespace Database\Factories\User\Models;
 
 use App\User\Models\User;
+use App\User\Models\UserBase;
+use App\User\Models\UserDivision;
 use App\User\Models\UserLocation;
 use App\User\Models\UserOrganization;
+use App\User\Models\UserPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -31,9 +34,16 @@ class UserFactory extends Factory
             'password' => md5(md5('test')),
             'fio' => $this->faker->unique()->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone' => Str::random(16),
+            'phone' => Str::random(15),
+            'telegram' => Str::random(32),
+            'avatar' => Str::random(50),
+            'status' => mt_rand(0, 1),
+            'fired' => mt_rand(0, 1),
             'organization_id' => UserOrganization::factory(),
-            'location_id' => UserLocation::factory()
+            'division_id' => UserDivision::factory(),
+            'post_id' => UserPost::factory(),
+            'location_id' => UserLocation::factory(),
+            'base_id' => UserBase::factory()
         ];
     }
 }

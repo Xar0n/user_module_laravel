@@ -29,13 +29,13 @@ class CreateUsersTable extends Migration
             //$table->integer('type')->nullable();
             //$table->integer('truck')->nullable();
             //$table->boolean('not_sign_mode')->nullable();
-            $table->unsignedBigInteger('become_user')->nullable();
+            //$table->unsignedBigInteger('become_user')->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('division_id')->nullable();
             $table->unsignedBigInteger('post_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
             $table->unsignedBigInteger('base_id')->nullable();
-            $table->foreign('become_user')->references('id')->on('users');
+            //$table->foreign('become_user')->references('id')->on('users');
             $table->foreign('organization_id')->references('id')->on('users_organizations');
             $table->foreign('division_id')->references('id')->on('users_divisions');
             $table->foreign('post_id')->references('id')->on('users_posts');

@@ -24,7 +24,7 @@ use Illuminate\Notifications\Notifiable;
  * @property boolean    $fired
 // * @property int        $truck
 // * @property boolean    $not_sign_mode
- * @property int        $become_user
+// * @property int        $become_user
  * @property int        $organization_id
  * @property int        $division_id
  * @property int        $post_id
@@ -64,7 +64,6 @@ class User extends Authenticatable
         'avatar',
         'status',
         'fired',
-        'become_user',
         'organization_id',
         'division_id',
         'post_id',
@@ -177,7 +176,7 @@ class User extends Authenticatable
      */
     public function userLocation()
     {
-        return $this->belongsToMany(UserRole::class, 'users_users_location', 'user_id', 'location_id');
+        return $this->belongsToMany(UserRole::class, 'users_users_locations', 'user_id', 'location_id');
     }
 
     /**
