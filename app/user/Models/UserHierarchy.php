@@ -2,13 +2,13 @@
 
 namespace App\User\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class User
+ * Class UserHierarchy
+ * Модель для согласуемового пользователя
  *
  * @package App\User\Models
  * @property boolean    $gender
@@ -18,20 +18,16 @@ use Illuminate\Notifications\Notifiable;
  * @property string     $email
  * @property string     $phone
  * @property string     $telegram
-//* @property string     $my_snab_sign
  * @property string     $avatar
  * @property boolean    $status
  * @property boolean    $fired
-// * @property int        $truck
-// * @property boolean    $not_sign_mode
-// * @property int        $become_user
  * @property int        $organization_id
  * @property int        $division_id
  * @property int        $post_id
  * @property int        $base_id
  * @property int        $location_id
  */
-class User extends Authenticatable
+class UserHierarchy extends Model
 {
     use HasFactory, Notifiable;
     /**
@@ -167,7 +163,7 @@ class User extends Authenticatable
      */
     public function userOrganization()
     {
-        return $this->belongsToMany(UserOrganization::class, 'users_users_organizations', 'user_id', 'organization_id');
+        return $this->belongsToMany(UserRole::class, 'users_users_roles', 'user_id', 'role_id');
     }
 
     /**
@@ -188,25 +184,5 @@ class User extends Authenticatable
     public function userStorage()
     {
         return $this->belongsToMany(UserStorage::class, 'users_users_storages', 'user_id', 'storage_id');
-    }
-
-    /**
-     * Согласуемые пользователя.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function userHierarchy()
-    {
-        return $this->belongsToMany(UserHierarchy::class, 'users_users_hierarchies', 'user_id', 'hierarchy_id');
-    }
-
-    /**
-     * Утвердители пользователя.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function userSigner()
-    {
-        return $this->belongsToMany(User::class, 'users_users_signers', 'user_id', 'signer_id');
     }
 }
