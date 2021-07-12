@@ -3,8 +3,11 @@
 namespace Tests\Feature;
 
 use App\User\Models\User;
+use App\User\Models\UserBase;
+use App\User\Models\UserDivision;
 use App\User\Models\UserLocation;
 use App\User\Models\UserOrganization;
+use App\User\Models\UserPost;
 use App\User\Models\UserRole;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,15 +22,23 @@ class UserTest extends TestCase
     {
         $organization = UserOrganization::factory()->create();
         $location = UserLocation::factory()->create();
+        $division = UserDivision::factory()->create();
+        $post = UserPost::factory()->create();
+        $base = UserBase::factory()->create();
         $role = UserRole::factory()->create();
         $response = $this->post('/users', [
             'user' => [
                 'gender' => mt_rand(0, 1),
                 'login' => $this->faker->unique()->userName(),
-                'password' => md5(md5('test')),
+                'password' => 'test',
                 'fio' => $this->faker->unique()->name(),
                 'email' => $this->faker->unique()->safeEmail(),
-                'phone' => Str::random(16),
+                'phone' => Str::random(15),
+                'telegram' => $this->faker->unique()->word(),
+                'avatar' =>Str::random(50),
+                'division_id' => $division->id,
+                'post_id' => $post->id,
+                'base_id' => $base->id,
                 'organization_id' => $organization->id,
                 'location_id' => $location->id
             ],
@@ -47,12 +58,8 @@ class UserTest extends TestCase
             'user' => [
                 'gender' => mt_rand(0, 1),
                 'login' => $this->faker->unique()->userName(),
-                'password' => md5(md5('test')),
+                'password' => 'test',
                 'fio' => $this->faker->unique()->name(),
-                'email' => null,
-                'phone' => null,
-                'organization_id' => null,
-                'location_id' => null
             ],
             'roles' => [
                 $role1->id,

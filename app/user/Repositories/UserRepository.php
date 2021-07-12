@@ -46,14 +46,23 @@ class UserRepository extends CoreRepository
      * @param string $fio
      * @param string|null $email
      * @param string|null $phone
+     * @param string|null $telegram
+     * @param string|null $avatar
+     * @param boolean $status
+     * @param boolean $fired
      * @param int|null $organization_id
+     * @param int|null $division_id
+     * @param int|null $post_id
+     * @param int|null $base_id
      * @param int|null $location_id
      *
      * @return User
      */
     public function store(bool $gender, string $login, string $password,
                           string $fio, string $email = null, string $phone = null,
-                          int $organization_id = null, int $location_id = null):User
+                          string $telegram = null, string $avatar = null, bool $status, bool $fired,
+                          int $organization_id = null, int $division_id = null,
+                          int $post_id = null, int $base_id = null, int $location_id = null):User
     {
         $model = $this->startConditions();
         $model->gender = $gender;
@@ -62,7 +71,14 @@ class UserRepository extends CoreRepository
         $model->fio = $fio;
         $model->email = $email;
         $model->phone = $phone;
+        $model->telegram = $telegram;
+        $model->avatar = $avatar;
+        $model->status = $status;
+        $model->fired = $fired;
         $model->organization_id = $organization_id;
+        $model->division_id = $division_id;
+        $model->post_id = $post_id;
+        $model->base_id = $base_id;
         $model->location_id = $location_id;
         $model->save();
         return $model;
