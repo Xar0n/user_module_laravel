@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @package App\User\Services
  *
+ * Сервис для работы с правами
  */
 class UserRightService
 {

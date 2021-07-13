@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
+ * модель для пользователя
+ *
  *
  * @package App\User\Models
  * @property boolean    $gender
@@ -137,16 +139,6 @@ class User extends Authenticatable
     public function division()
     {
         return $this->belongsTo(UserDivision::class, 'division_id');
-    }
-
-    /**
-     * Пользователь от которого произошел данный пользователь.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'become_user');
     }
 
     /**

@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания должности
+ */
 class UserPostFactory extends Factory
 {
     /**

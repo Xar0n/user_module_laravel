@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],function () {
+    //исключенные действия ресурсных контроллеров
     $except = ['create', 'show', 'destroy', 'edit', 'index'];
     Route::resource('/', 'UserController')->except($except);
     Route::resource('roles', 'UserRoleController')->except($except);
@@ -27,6 +28,6 @@ Route::group(['prefix' => '/users', 'namespace' => 'App\User\Controllers'],funct
     Route::resource('rights', 'UserRightController')->except($except);
     Route::resource('groups', 'UserGroupController')->except($except);
     Route::group(['prefix' => '/roles'], function () {
-        Route::post('/{idRole}/groups/{idGroup}', 'UserGroupController@addRole');
+        Route::patch('/{idRole}/groups/{idGroup}', 'UserGroupController@addRole');
     });
 });

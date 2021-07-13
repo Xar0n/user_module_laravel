@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
  *
  * @package App\User\Services
  *
+ * Сервис для работы с пользователем
  */
 class UserService
 {

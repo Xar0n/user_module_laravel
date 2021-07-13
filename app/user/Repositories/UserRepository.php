@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
  *
  * @package App\User\Repositories
  *
- *
+ * Репозиторий для работы с моделью User
  */
 class UserRepository extends CoreRepository
 {
@@ -29,8 +29,6 @@ class UserRepository extends CoreRepository
      * @param int $id
      *
      * @return User
-     *
-     * @throws ModelNotFoundException
      */
     public function getEdit(int $id):User
     {

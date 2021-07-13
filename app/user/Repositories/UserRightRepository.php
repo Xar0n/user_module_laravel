@@ -5,15 +5,13 @@ namespace App\User\Repositories;
 
 
 use App\User\Models\UserRight;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\UnauthorizedException;
 
 /**
  * Class UserRightRepository
  *
  * @package App\User\Repositories
  *
- *
+ * Репозиторий для работы с моделью UserRight
  */
 class UserRightRepository extends CoreRepository
 {
@@ -32,8 +30,6 @@ class UserRightRepository extends CoreRepository
      * @param int $id
      *
      * @return UserRight
-     *
-     * @throws ModelNotFoundException
      */
     public function getEdit(int $id):UserRight
     {
@@ -44,12 +40,15 @@ class UserRightRepository extends CoreRepository
      * Создать модель
      *
      * @param string $name
+     *
+     * @return UserRight
      */
-    public function store(string $name)
+    public function store(string $name):UserRight
     {
         $model = $this->startConditions();
         $model->name = $name;
         $model->save();
+        return $model;
     }
 
     /**
@@ -57,10 +56,13 @@ class UserRightRepository extends CoreRepository
      *
      * @param UserRight $model
      * @param string $name
+     *
+     * @return UserRight
      */
-    public function update(UserRight $model, string $name)
+    public function update(UserRight $model, string $name):UserRight
     {
         $model->name = $name;
         $model->save();
+        return $model;
     }
 }

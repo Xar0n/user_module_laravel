@@ -26,7 +26,7 @@ class UserGroupTest extends TestCase
     {
         $group = UserGroup::factory()->create();
         $role = UserRole::factory()->create();
-        $response = $this->post('/users/roles/'.$role->id.'/groups/'.$group->id, []);
+        $response = $this->patch('/users/roles/'.$role->id.'/groups/'.$group->id, []);
         $response->assertStatus(200);
     }
 }

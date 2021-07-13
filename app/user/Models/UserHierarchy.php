@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * Class UserHierarchy
- * Модель для согласуемового пользователя
  *
  * @package App\User\Models
  * @property boolean    $gender
@@ -26,6 +25,8 @@ use Illuminate\Notifications\Notifiable;
  * @property int        $post_id
  * @property int        $base_id
  * @property int        $location_id
+ *
+ * Модель для согласуемового пользователя
  */
 class UserHierarchy extends Model
 {

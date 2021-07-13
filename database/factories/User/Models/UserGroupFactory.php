@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания группы
+ */
 class UserGroupFactory extends Factory
 {
     /**

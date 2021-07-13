@@ -4,6 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateUsersUsersSignersTable
+ *
+ * Миграция создания таблицы users_rights_roles для установления отношения "многие ко многим"
+ * между данными таблиц users и users для утвердителей пользователя
+ */
 class CreateUsersUsersSignersTable extends Migration
 {
     /**

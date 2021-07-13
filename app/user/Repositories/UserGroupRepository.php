@@ -3,16 +3,14 @@
 
 namespace App\User\Repositories;
 
-use App\User\Models\User;
 use App\User\Models\UserGroup;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class UserGroupRepository
  *
  * @package App\User\Repositories
  *
- *
+ * Репозиторий для работы с моделью UserGroup
  */
 class UserGroupRepository extends CoreRepository
 {
@@ -30,8 +28,6 @@ class UserGroupRepository extends CoreRepository
      * @param int $id
      *
      * @return UserGroup
-     *
-     * @throws ModelNotFoundException
      */
     public function getEdit(int $id):UserGroup
     {
@@ -42,12 +38,15 @@ class UserGroupRepository extends CoreRepository
      * Создать модель
      *
      * @param string $name
+     *
+     * @return UserGroup
      */
-    public function store(string $name)
+    public function store(string $name):UserGroup
     {
         $model = $this->startConditions();
         $model->name = $name;
         $model->save();
+        return $model;
     }
 
     /**
@@ -59,5 +58,27 @@ class UserGroupRepository extends CoreRepository
     public function addRole(UserGroup $model, int $idRole)
     {
         $model->userRole()->attach($idRole);
+    }
+
+    /**
+     * Удалить роль из группы
+     *
+     * @param UserGroup $model
+     * @param int $idRole
+     */
+    public function deleteRole(UserGroup $model, int $idRole)
+    {
+        $model->userRole()->detach($idRole);
+    }
+
+    /**
+     * Получить указанную роль группы
+     *
+     * @param UserGroup $model
+     * @param int $idRole
+     */
+    public function getRole(UserGroup $model, int $idRole)
+    {
+        return $model->userRole()->find($idRole);
     }
 }

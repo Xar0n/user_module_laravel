@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @package App\User\Services
  *
+ * Сервис для работы с группами
  */
 class UserGroupService
 {
@@ -52,5 +53,28 @@ class UserGroupService
             abort(404);
         }
         $this->userGroupRepository->addRole($group, $idRole);
+    }
+
+    /**
+     * Изменение роли группы(Добавление или удаление)
+     *
+     * @param int $idGroup
+     * @param int $idRole
+     *
+     * @throws HttpException
+     * @throws NotFoundHttpException
+     */
+    public function changeRole(int $idGroup, int $idRole)
+    {
+        $group = $this->userGroupRepository->getEdit($idGroup);
+        if (empty($group)) {
+            abort(404);
+        }
+        $role = $this->userGroupRepository->getRole($group, $idRole);
+        if (empty($role)) {
+            $this->userGroupRepository->addRole($group, $idRole);
+        } else {
+            $this->userGroupRepository->deleteRole($group, $idRole);
+        }
     }
 }

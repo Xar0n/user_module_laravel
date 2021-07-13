@@ -4,16 +4,14 @@
 namespace App\User\Repositories;
 
 
-use App\User\Models\User;
 use App\User\Models\UserRole;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class UserRoleRepository
  *
  * @package App\User\Repositories
  *
- *
+ * Репозиторий для работы с моделью UserRole
  */
 class UserRoleRepository extends CoreRepository
 {
@@ -31,8 +29,6 @@ class UserRoleRepository extends CoreRepository
      * @param int $id
      *
      * @return UserRole
-     *
-     * @throws ModelNotFoundException
      */
     public function getEdit(int $id):UserRole
     {
@@ -45,8 +41,6 @@ class UserRoleRepository extends CoreRepository
      * @param int $id
      *
      * @return
-     *
-     * @throws ModelNotFoundException
      */
     public function getRights(int $id)
     {
@@ -65,15 +59,39 @@ class UserRoleRepository extends CoreRepository
     }
 
     /**
+     * Удалить право из роли
+     *
+     * @param UserRole $model
+     * @param int $idRight
+     */
+    public function deleteRight(UserRole $model, int $idRight)
+    {
+        $model->userRight()->detach($idRight);
+    }
+
+    /**
+     * Получить указанное право роли
+     *
+     * @param UserRole $model
+     * @param int $idRight
+     */
+    public function getRight(UserRole $model, int $idRight)
+    {
+        return $model->userRight()->find($idRight);
+    }
+
+    /**
      * Создать модель
      *
      * @param string $name
+     * @return UserRole
      */
-    public function store(string $name)
+    public function store(string $name):UserRole
     {
         $model = $this->startConditions();
         $model->name = $name;
         $model->save();
+        return $model;
     }
 
     /**
@@ -81,10 +99,12 @@ class UserRoleRepository extends CoreRepository
      *
      * @param UserRole $model
      * @param string $name
+     * @return UserRole
      */
-    public function update(UserRole $model, string $name)
+    public function update(UserRole $model, string $name):UserRole
     {
         $model->name = $name;
         $model->save();
+        return $model;
     }
 }

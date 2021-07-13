@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  *
  * @package App\User\Controllers
  *
- *
+ * Контроллер для работы с группами
  */
 class UserGroupController extends Controller
 {
@@ -44,6 +44,7 @@ class UserGroupController extends Controller
      */
     public function addRole($idRole, $idGroup)
     {
-        $this->userGroupService->addRole($idGroup, $idRole);
+        //$this->userGroupService->addRole($idGroup, $idRole);
+        $this->userGroupService->changeRole($idGroup, $idRole);
     }
 }

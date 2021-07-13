@@ -6,6 +6,11 @@ use App\Models\Model;
 use App\User\Models\UserStorage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserStorageFactory
+ *
+ * Фабрика для создания склада
+ */
 class UserStorageFactory extends Factory
 {
     /**

@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserLocation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания участка
+ */
 class UserLocationFactory extends Factory
 {
     /**

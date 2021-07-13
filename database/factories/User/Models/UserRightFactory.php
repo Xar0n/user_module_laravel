@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserRight;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания права
+ */
 class UserRightFactory extends Factory
 {
     /**

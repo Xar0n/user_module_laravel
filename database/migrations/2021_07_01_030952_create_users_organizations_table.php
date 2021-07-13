@@ -4,6 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * CreateUsersOrganizationsTable
+ *
+ * Миграция создания таблицы users_organizations для организаций
+ */
 class CreateUsersOrganizationsTable extends Migration
 {
     /**

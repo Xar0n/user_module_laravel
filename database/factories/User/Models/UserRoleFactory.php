@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания роли
+ */
 class UserRoleFactory extends Factory
 {
     /**

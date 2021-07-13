@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class UserSigner\
- * Модель для утвердителя пользователя
+ * Class UserSigner
  *
  * @package App\User\Models
  * @property boolean    $gender
@@ -26,6 +25,8 @@ use Illuminate\Notifications\Notifiable;
  * @property int        $post_id
  * @property int        $base_id
  * @property int        $location_id
+ *
+ * Модель для утвердителя пользователя
  */
 class UserSigner extends Model
 {

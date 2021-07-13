@@ -5,6 +5,11 @@ namespace Database\Factories\User\Models;
 use App\User\Models\UserOrganization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания организации
+ */
 class UserOrganizationFactory extends Factory
 {
     /**

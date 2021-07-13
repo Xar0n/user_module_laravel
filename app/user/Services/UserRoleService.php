@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @package App\User\Services
  *
+ * Сервис для работы с ролями
  */
 class UserRoleService
 {
@@ -71,5 +72,28 @@ class UserRoleService
             abort(404);
         }
         $this->userRoleRepository->addRight($role, $idRight);
+    }
+
+    /**
+     * Изменение права роли(Добавление или удаление)
+     *
+     * @param int $idRole
+     * @param int $idRight
+     *
+     * @throws HttpException
+     * @throws NotFoundHttpException
+     */
+    public function changeRight(int $idRole, int $idRight)
+    {
+        $role = $this->userRoleRepository->getEdit($idRole);
+        if (empty($role)) {
+            abort(404);
+        }
+        $right = $this->userRoleRepository->getRight($role, $idRight);
+        if (empty($right)) {
+            $this->userRoleRepository->addRight($role, $idRight);
+        } else {
+            $this->userRoleRepository->deleteRight($role, $idRight);
+        }
     }
 }

@@ -11,6 +11,11 @@ use App\User\Models\UserSigner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * Class UserSignerFactory
+ *
+ * Фабрика для создания утвердителя пользователя
+ */
 class UserSignerFactory extends Factory
 {
     /**

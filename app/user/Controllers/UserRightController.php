@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  *
  * @package App\User\Controllers
  *
- *
+ * Контроллер для работы с правами
  */
 class UserRightController extends Controller
 {

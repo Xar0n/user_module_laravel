@@ -4,6 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateUsersRolesTable
+ *
+ * Миграция создания таблицы users_roles для ролей
+ */
 class CreateUsersRolesTable extends Migration
 {
     /**

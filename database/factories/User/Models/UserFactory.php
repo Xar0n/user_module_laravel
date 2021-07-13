@@ -11,7 +11,11 @@ use App\User\Models\UserPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-
+/**
+ * Class UserBaseFactory
+ *
+ * Фабрика для создания пользователя
+ */
 class UserFactory extends Factory
 {
     /**

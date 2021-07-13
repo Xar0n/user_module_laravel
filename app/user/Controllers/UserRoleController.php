@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  *
  * @package App\User\Controllers
  *
- *
+ * Контроллер для работы с ролями
  */
 class UserRoleController extends Controller
 {
@@ -54,6 +54,7 @@ class UserRoleController extends Controller
      */
     public function addRight($idRole, $idRight)
     {
-        $this->userRoleService->addRight($idRole, $idRight);
+        //$this->userRoleService->addRight($idRole, $idRight);
+        $this->userRoleService->changeRight($idRole, $idRight);
     }
 }

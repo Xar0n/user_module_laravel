@@ -4,6 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateUsersGroupsRolesTable
+ *
+ * Миграция создания таблицы users_rights_roles для установления отношения "многие ко многим"
+ * между данными таблиц users_groups и users_roles для ролей принадлежащих группе
+ */
 class CreateUsersGroupsRolesTable extends Migration
 {
     /**

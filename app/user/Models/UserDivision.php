@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * class UserDivision
+ * Модель для подразделений
  *
  * @package App\User\Models
  * @property string     $name

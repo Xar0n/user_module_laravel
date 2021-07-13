@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\User\Models
  * @property string     $name
+ *
+ * Модель для должностей
  */
 class UserPost extends Model
 {
