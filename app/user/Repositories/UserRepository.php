@@ -4,7 +4,6 @@
 namespace App\User\Repositories;
 
 use App\User\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class UserRepository
@@ -86,14 +85,14 @@ class UserRepository extends CoreRepository
      * Редактировать модель
      *
      * @param User $user
+     * @param string $flagEditSection
      * @param boolean $gender
-     * @param string $login
-     * @param string $password
-     * @param string $fio
+     * @param string|null $login
+     * @param string|null $fio
      * @param string|null $email
      * @param string|null $phone
      * @param string|null $telegram
-     * @param string|null $avatar
+//     * @param string|null $avatar
      * @param boolean $status
      * @param boolean $fired
      * @param int|null $organization_id
@@ -104,28 +103,37 @@ class UserRepository extends CoreRepository
      *
      * @return User
      */
-    public function update(User $user, bool $gender, string $login, string $password,
-                          string $fio, string $email = null, string $phone = null,
-                          string $telegram = null, string $avatar = null, bool $status, bool $fired,
+    public function update(User $user, string $flagEditSection, bool $gender, string $login = null,
+                          string $fio = null, string $email = null, string $phone = null,
+                          string $telegram = null, bool $status, bool $fired,
                           int $organization_id = null, int $division_id = null,
                           int $post_id = null, int $base_id = null, int $location_id = null):User
     {
         $model = $user;
-        $model->gender = $gender;
-        $model->login = $login;
-        $model->password = $password;
-        $model->fio = $fio;
-        $model->email = $email;
-        $model->phone = $phone;
-        $model->telegram = $telegram;
-        $model->avatar = $avatar;
-        $model->status = $status;
-        $model->fired = $fired;
-        $model->organization_id = $organization_id;
-        $model->division_id = $division_id;
-        $model->post_id = $post_id;
-        $model->base_id = $base_id;
-        $model->location_id = $location_id;
+        switch ($flagEditSection) {
+            case 'general':
+                $model->gender = $gender;
+                $model->login = $login;
+                $model->fio = $fio;
+                $model->fired = $fired;
+                $model->organization_id = $organization_id;
+                $model->division_id = $division_id;
+                $model->post_id = $post_id;
+                $model->base_id = $base_id;
+                $model->location_id = $location_id;
+                break;
+            case 'contact':
+                $model->email = $email;
+                $model->phone = $phone;
+                $model->telegram = $telegram;
+                break;
+            case 'status':
+                $model->status = $status;
+                break;
+            case 'nothing':
+                break;
+        }
+        //        $model->avatar = $avatar;
         $model->save();
         return $model;
     }
@@ -160,7 +168,7 @@ class UserRepository extends CoreRepository
      */
     public function addHierarchy(User $model, int $idHierarchy)
     {
-        $model->userSigner()->attach($idHierarchy);
+        $model->userHierarchy()->attach($idHierarchy);
     }
 
     /**
@@ -190,6 +198,6 @@ class UserRepository extends CoreRepository
      */
     public function deleteAllHierarchies(User $model)
     {
-        $model->userSigner()->delete();
+        $model->userHierarchy()->delete();
     }
 }

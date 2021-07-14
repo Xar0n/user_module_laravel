@@ -65,45 +65,70 @@ class UserService
      */
     public function update(Request $request, int $id)
     {
+        $gender = false;
+        $login = null;
+        $fio = null;
+        $post_id = null;
+        $division_id = null;
+        $organization_id = null;
+        $fired = false;;
+        $location_id = null;
+        $base_id = null;
+        $email = null;
+        $phone = null;
+        $telegram = null;
+        $status = false;
+        //Здесь хранится информация о секции редактирование которой нужно выполнить
+        $flagEditSection = 'nothing';
         $model = $this->userRepository->getEdit($id);
         if(empty($model)) {
             abort(404);
         }
-        $gender = (bool) $request->input('user.gender');
-        $login = $request->input('user.login');
-        $password = md5(md5($request->input('user.password')));
-        $fio = $request->input('user.fio');
-        $email = !empty($request->input('user.email')) ? $request->input('user.email') : null;
-        $phone = !empty($request->input('user.phone')) ? $request->input('user.phone') : null;
-        $telegram = !empty($request->input('user.telegram')) ? $request->input('user.telegram') : null;
-        $avatar = !empty($request->input('user.avatar')) ? $request->input('user.avatar') : null;
-        $status = !empty($request->input('user.status')) ? $request->input('user.status') : null;
-        $fired = !empty($request->input('user.fired')) ? $request->input('user.fired') : null;
-        $organization_id = !empty($request->input('user.organization_id')) ? (int) $request->input('user.organization_id') : null;
-        $division_id = !empty($request->input('user.division_id')) ? (int) $request->input('user.division_id') : null;
-        $post_id = !empty($request->input('user.post_id')) ? (int) $request->input('user.post_id') : null;
-        $base_id = !empty($request->input('user.base_id')) ? (int) $request->input('user.base_id') : null;
-        $location_id = !empty($request->input('user.location_id')) ? (int) $request->input('user.location_id') : null;
-        $model = $this->userRepository->update($model, $gender, $login, $password, $fio, $email, $phone, $telegram, $avatar, $status,
-            $fired, $organization_id, $division_id, $post_id, $base_id, $location_id);
-        if($request->has('roles')) {
+        //Основные поля пользователя
+        $keysUserGeneralInf = ['user.gender', 'user.login', 'user.fio', 'user.post_id', 'user.division_id',
+            'user.organization_id', 'user.fired', 'user.location_id', 'user.base_id'];
+        //Поля с контактной информацией пользователя
+        $keysUserContactInf = ['user.email', 'user.phone', 'user.telegram'];
+        $user = (array) $request->input('user');
+        if($request->has($keysUserGeneralInf)) {
+            $gender = (bool) $user['gender'];
+            $login = $user['login'];
+            $fio = $user['fio'];
+            $post_id = !empty($user['post_id']) ? (int) $user['post_id'] : null;
+            $division_id = !empty($user['division_id']) ? (int) $user['division_id'] : null;
+            $organization_id = !empty($user['organization_id']) ? (int) $user['organization_id'] : null;
+            $fired = !empty($user['fired']) ? (bool) $user['fired'] : false;;
+            $location_id = !empty($user['location_id']) ? (int) $user['location_id'] : null;
+            $base_id = !empty($user['base_id']) ? (int) $user['base_id'] : null;
+            $flagEditSection = 'general';
+        } else if($request->has($keysUserContactInf)) {
+            $email = !empty($user['email']) ? $user['email'] : null;
+            $phone = !empty($user['phone']) ? $user['phone'] : null;
+            $telegram = !empty($user['telegram']) ? $user['telegram'] : null;
+            $flagEditSection = 'contact';
+        } else if ($request->has('user.status')) {
+            $status = $user['status'];
+            $flagEditSection = 'status';
+        } else if($request->has('roles')) {
             $this->userRepository->deleteAllRoles($model);
             $roles = (array) $request->input('roles');
             foreach ($roles as $role) {
                 $this->userRepository->addRole($model, $role);
             }
-        } if($request->has('signers')) {
+        } else if($request->has('signers')) {
             $this->userRepository->deleteAllSigners($model);
             $signers = (array) $request->input('signers');
             foreach ($signers as $signer) {
                 $this->userRepository->addSigner($model, $signer);
             }
-        } if($request->has('hierarchies')) {
+        } else if($request->has('hierarchies')) {
             $this->userRepository->deleteAllHierarchies($model);
             $hierarchies = (array) $request->input('hierarchies');
             foreach ($hierarchies as $hierarchy) {
                 $this->userRepository->addHierarchy($model, $hierarchy);
             }
         }
+        $this->userRepository->update($model, $flagEditSection, $gender, $login, $fio, $email, $phone, $telegram, $status,
+            $fired, $organization_id, $division_id, $post_id, $base_id, $location_id);
     }
 }
