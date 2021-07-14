@@ -34,4 +34,15 @@ class UserController extends Controller
     {
         $this->userService->store($request);
     }
+
+    /**
+     * Обновить указанный ресурс в хранилище.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @@param  int $id
+     */
+    public function update(Request $request, $id)
+    {
+        $this->userService->update($request, $id);
+    }
 }
