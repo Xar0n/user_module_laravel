@@ -2,6 +2,8 @@
 
 namespace App\User\Controllers;
 
+use App\User\Requests\UserStoreRequest;
+use App\User\Requests\UserUpdateRequest;
 use App\User\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -28,9 +30,9 @@ class UserController extends Controller
     /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserStoreRequest  $request
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         $this->userService->store($request);
     }
@@ -38,10 +40,10 @@ class UserController extends Controller
     /**
      * Обновить указанный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserUpdateRequest  $request
      * @@param  int $id
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $this->userService->update($request, $id);
     }

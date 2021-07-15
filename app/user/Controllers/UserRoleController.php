@@ -2,8 +2,8 @@
 
 namespace App\User\Controllers;
 
+use App\User\Requests\UserRoleRequest;
 use App\User\Services\UserRoleService;
-use Illuminate\Http\Request;
 
 /**
  * Class UserRoleController
@@ -28,9 +28,9 @@ class UserRoleController extends Controller
     /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRoleRequest  $request
      */
-    public function store(Request $request)
+    public function store(UserRoleRequest $request)
     {
         $this->userRoleService->store($request);
     }
@@ -38,10 +38,10 @@ class UserRoleController extends Controller
     /**
      * Обновить указанный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRoleRequest  $request
      * @param  int $id
      */
-    public function update(Request $request, $id)
+    public function update(UserRoleRequest $request, $id)
     {
         $this->userRoleService->update($request, $id);
     }
@@ -52,9 +52,8 @@ class UserRoleController extends Controller
      * @param int $idRole
      * @param int $idRight
      */
-    public function addRight($idRole, $idRight)
+    public function changeRight($idRole, $idRight)
     {
-        //$this->userRoleService->addRight($idRole, $idRight);
         $this->userRoleService->changeRight($idRole, $idRight);
     }
 }

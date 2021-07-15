@@ -3,6 +3,7 @@
 namespace App\User\Controllers;
 
 
+use App\User\Requests\UserGroupRequest;
 use App\User\Services\UserGroupService;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,9 @@ class UserGroupController extends Controller
     /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserGroupRequest  $request
      */
-    public function store(Request $request)
+    public function store(UserGroupRequest $request)
     {
         $this->userGroupService->store($request);
     }
@@ -42,9 +43,8 @@ class UserGroupController extends Controller
      * @param int $idRole
      * @param int $idGroup
      */
-    public function addRole($idRole, $idGroup)
+    public function changeRole($idRole, $idGroup)
     {
-        //$this->userGroupService->addRole($idGroup, $idRole);
         $this->userGroupService->changeRole($idGroup, $idRole);
     }
 }

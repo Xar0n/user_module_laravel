@@ -25,7 +25,7 @@ class UserRoleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_add_right()
+    public function test_change_right()
     {
         $right = UserRight::factory()->create();
         $role = UserRole::factory()->create();

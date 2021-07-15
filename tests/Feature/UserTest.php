@@ -18,7 +18,7 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     public function test_store()
     {
@@ -37,7 +37,7 @@ class UserTest extends TestCase
                 'email' => $this->faker->unique()->safeEmail(),
                 'phone' => Str::random(15),
                 'telegram' => $this->faker->unique()->word(),
-                'avatar' =>Str::random(50),
+                'avatar' => Str::random(49),
                 'division_id' => $division->id,
                 'post_id' => $post->id,
                 'base_id' => $base->id,

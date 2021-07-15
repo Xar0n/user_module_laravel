@@ -2,8 +2,8 @@
 
 namespace App\User\Controllers;
 
+use App\User\Requests\UserRightRequest;
 use App\User\Services\UserRightService;
-use Illuminate\Http\Request;
 
 /**
  * Class UserRightController
@@ -28,9 +28,9 @@ class UserRightController extends Controller
     /**
      * Сохранить вновь созданный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRightRequest  $request
      */
-    public function store(Request $request)
+    public function store(UserRightRequest $request)
     {
         $this->userRightService->store($request);
     }
@@ -38,10 +38,10 @@ class UserRightController extends Controller
     /**
      * Обновить указанный ресурс в хранилище.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRightRequest  $request
      * @@param  int $id
      */
-    public function update(Request $request, $id)
+    public function update(UserRightRequest $request, $id)
     {
         $this->userRightService->update($request, $id);
     }

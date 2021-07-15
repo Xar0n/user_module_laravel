@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+           // $table->integer('id', true);
             $table->id();
             $table->boolean('gender');
             $table->string('login', 30)->unique();

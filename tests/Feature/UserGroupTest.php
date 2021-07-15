@@ -22,7 +22,7 @@ class UserGroupTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_add_role()
+    public function test_change_role()
     {
         $group = UserGroup::factory()->create();
         $role = UserRole::factory()->create();
