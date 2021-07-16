@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class UserGroupTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
     /**
      * A basic feature test example.
      *

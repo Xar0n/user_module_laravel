@@ -11,6 +11,7 @@ use App\User\Models\UserOrganization;
 use App\User\Models\UserPost;
 use App\User\Models\UserRole;
 use App\User\Models\UserSigner;
+use App\User\Models\UserStorage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
@@ -20,7 +21,7 @@ class UserTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function test_store()
+    public function test_store_all()
     {
         $organization = UserOrganization::factory()->create();
         $location = UserLocation::factory()->create();
@@ -51,7 +52,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_store2()
+    public function test_store_required()
     {
         $role1 = UserRole::factory()->create();
         $role2 = UserRole::factory()->create();
@@ -72,14 +73,14 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update1()
+    public function test_update_empty()
     {
         $user = User::factory()->create();
         $response = $this->patch('/users/'.$user->id, []);
         $response->assertStatus(200);
     }
 
-    public function test_update2()
+    public function test_update_status()
     {
         $user = User::factory()->create();
         $response = $this->patch('/users/'.$user->id, [
@@ -90,7 +91,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update3()
+    public function test_update_general()
     {
         $user = User::factory()->create();
         $response = $this->patch('/users/'.$user->id, [
@@ -109,7 +110,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update4()
+    public function test_update_contact()
     {
         $user = User::factory()->create();
         $response = $this->patch('/users/'.$user->id, [
@@ -122,7 +123,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update5()
+    public function test_update_roles()
     {
         $role1 = UserRole::factory()->create();
         $role2 = UserRole::factory()->create();
@@ -138,7 +139,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update6()
+    public function test_update_signers()
     {
         $signer1 = UserSigner::factory()->create();
         $signer2 = UserSigner::factory()->create();
@@ -165,6 +166,54 @@ class UserTest extends TestCase
                 $hierarchy1->id,
                 $hierarchy2->id,
                 $hierarchy3->id
+            ],
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_update_storages()
+    {
+        $storage1 = UserStorage::factory()->create();
+        $storage2 = UserStorage::factory()->create();
+        $storage3 = UserStorage::factory()->create();
+        $user = User::factory()->create();
+        $response = $this->patch('/users/'.$user->id, [
+            'storages' => [
+                $storage1->id,
+                $storage2->id,
+                $storage3->id
+            ],
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_update_locations()
+    {
+        $location1 = UserLocation::factory()->create();
+        $location2 = UserLocation::factory()->create();
+        $location3 = UserLocation::factory()->create();
+        $user = User::factory()->create();
+        $response = $this->patch('/users/'.$user->id, [
+            'locations' => [
+                $location1->id,
+                $location2->id,
+                $location3->id
+            ],
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_update_organizations()
+    {
+        $organization1 = UserOrganization::factory()->create();
+        $organization2 = UserOrganization::factory()->create();
+        $organization3 = UserOrganization::factory()->create();
+        $user = User::factory()->create();
+        $response = $this->patch('/users/'.$user->id, [
+            'organizations' => [
+                $organization1->id,
+                $organization2->id,
+                $organization3->id
             ],
         ]);
         $response->assertStatus(200);

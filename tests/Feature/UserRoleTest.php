@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class UserRoleTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     public function test_update()
     {

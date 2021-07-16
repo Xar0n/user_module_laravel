@@ -127,6 +127,24 @@ class UserService
             foreach ($hierarchies as $hierarchy) {
                 $this->userRepository->addHierarchy($model, $hierarchy);
             }
+        } else if($request->has('storages')) {
+            $this->userRepository->deleteAllStorages($model);
+            $storages = (array) $request->input('storages');
+            foreach ($storages as $storage) {
+                $this->userRepository->addStorage($model, $storage);
+            }
+        } else if($request->has('locations')) {
+            $this->userRepository->deleteAllLocations($model);
+            $locations = (array) $request->input('locations');
+            foreach ($locations as $location) {
+                $this->userRepository->addLocation($model, $location);
+            }
+        } else if($request->has('organizations')) {
+            $this->userRepository->deleteAllOrganizations($model);
+            $organizations = (array) $request->input('organizations');
+            foreach ($organizations as $organization) {
+                $this->userRepository->addOrganization($model, $organization);
+            }
         }
         $this->userRepository->update($model, $flagEditSection, $gender, $login, $fio, $email, $phone, $telegram, $status,
             $fired, $organization_id, $division_id, $post_id, $base_id, $location_id);

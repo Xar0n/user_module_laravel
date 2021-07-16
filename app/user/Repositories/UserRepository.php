@@ -172,6 +172,39 @@ class UserRepository extends CoreRepository
     }
 
     /**
+     * Добавить пользователю доступ к складу
+     *
+     * @param User $model
+     * @param int $idStorage
+     */
+    public function addStorage(User $model, int $idStorage)
+    {
+        $model->userStorage()->attach($idStorage);
+    }
+
+    /**
+     * Добавить пользователю доступ к организации
+     *
+     * @param User $model
+     * @param int $idOrganization
+     */
+    public function addOrganization(User $model, int $idOrganization)
+    {
+        $model->userOrganization()->attach($idOrganization);
+    }
+
+    /**
+     * Добавить пользователю доступ к участку
+     *
+     * @param User $model
+     * @param int $idLocation
+     */
+    public function addLocation(User $model, int $idLocation)
+    {
+        $model->userLocation()->attach($idLocation);
+    }
+
+    /**
      * Удалить все роли пользователя
      *
      * @param User $model
@@ -179,6 +212,37 @@ class UserRepository extends CoreRepository
     public function deleteAllRoles(User $model)
     {
         $model->userRole()->delete();
+    }
+
+
+    /**
+     * Удалить все организации к которым у пользователя есть доступ
+     *
+     * @param User $model
+     */
+    public function deleteAllOrganizations(User $model)
+    {
+        $model->userOrganization()->delete();
+    }
+
+    /**
+     * Удалить все склады к которым у пользователя есть доступ
+     *
+     * @param User $model
+     */
+    public function deleteAllStorages(User $model)
+    {
+        $model->userStorage()->delete();
+    }
+
+    /**
+     * Удалить все участки к которым у пользователя есть доступ
+     *
+     * @param User $model
+     */
+    public function deleteAllLocations(User $model)
+    {
+        $model->userLocation()->delete();
     }
 
     /**
